@@ -269,6 +269,7 @@
     _adjustTilesForRetinaDisplay = NO;
     _missingTilesDepth = 1;
     _debugTiles = NO;
+    _clearTileLayerContents = YES;
 
     _orderMarkersByYPosition = YES;
     _orderClusterMarkersAboveOthers = YES;
@@ -1290,7 +1291,8 @@
 
     for (__strong RMMapTiledLayerView *tiledLayerView in _tiledLayersSuperview.subviews)
     {
-        tiledLayerView.layer.contents = nil;
+        if (self.clearTileLayerContents)
+            tiledLayerView.layer.contents = nil;
         [tiledLayerView removeFromSuperview];  tiledLayerView = nil;
     }
 
@@ -2218,7 +2220,8 @@
         }
     }
 
-    tileSourceTiledLayerView.layer.contents = nil;
+    if (self.clearTileLayerContents)
+        tileSourceTiledLayerView.layer.contents = nil;
     [tileSourceTiledLayerView removeFromSuperview];  tileSourceTiledLayerView = nil;
 
     [self setCenterProjectedPoint:centerPoint animated:NO];
@@ -2242,7 +2245,8 @@
     // Remove the map layer
     RMMapTiledLayerView *tileSourceTiledLayerView = [_tiledLayersSuperview.subviews objectAtIndex:index];
 
-    tileSourceTiledLayerView.layer.contents = nil;
+    if (self.clearTileLayerContents)
+        tileSourceTiledLayerView.layer.contents = nil;
     [tileSourceTiledLayerView removeFromSuperview];  tileSourceTiledLayerView = nil;
 
     [self setCenterProjectedPoint:centerPoint animated:NO];
@@ -2610,7 +2614,8 @@
 
     for (RMMapTiledLayerView *tiledLayerView in _tiledLayersSuperview.subviews)
     {
-        tiledLayerView.layer.contents = nil;
+        if (self.clearTileLayerContents)
+            tiledLayerView.layer.contents = nil;
         [tiledLayerView.layer setNeedsDisplay];
     }
 }

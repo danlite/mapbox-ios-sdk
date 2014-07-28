@@ -524,4 +524,10 @@ typedef enum : NSUInteger {
 *   @param animated Whether changes to the map center or rotation should be animated when the mode is changed. */
 - (void)setUserTrackingMode:(RMUserTrackingMode)mode animated:(BOOL)animated;
 
+#pragma mark -
+#pragma mark Debug
+
+/** Whether the map view should clear its tiledLayerView layer contents to nil when removing or replacing a tile source. The default value is `YES`. */
+@property (nonatomic, assign) BOOL clearTileLayerContents;
+
 @end
